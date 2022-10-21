@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Esteban Castillo
  */
-//@CrossOrigin(origins ="https://sistema-vanila.azurewebsites.net")
-    @CrossOrigin(origins ="http://localhost:4200")
+@CrossOrigin(origins ="https://sistema-vanila.azurewebsites.net")
+//    @CrossOrigin(origins ="http://localhost:4200")
     @RestController
     @RequestMapping(path="/ofertas")
 public class OfertasController {
