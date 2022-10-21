@@ -5,8 +5,8 @@
  */
 package com.vanilacompany.sistemavanila.controller;
 
-import com.vanilacompany.sistemavanila.modelo.Productos;
-import com.vanilacompany.sistemavanila.repository.ProductosRepository;
+import com.vanilacompany.sistemavanila.modelo.Ofertas;
+import com.vanilacompany.sistemavanila.repository.OfertasRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,32 +23,32 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Esteban Castillo
  */
-    //@CrossOrigin(origins ="https://sistema-vanila.azurewebsites.net")
+//@CrossOrigin(origins ="https://sistema-vanila.azurewebsites.net")
     @CrossOrigin(origins ="http://localhost:4200")
     @RestController
-    @RequestMapping(path="/producto")
-    
-public class ProductosController {
+    @RequestMapping(path="/ofertas")
+public class OfertasController {
     @Autowired
-    private ProductosRepository repo;
+    private OfertasRepository repo;
     
     @PostMapping("/agregar")
-    public Productos agregar(@RequestBody Productos productos){
-       return repo.save(productos); 
+    public Ofertas agregar(@RequestBody Ofertas ofertas){
+       return repo.save(ofertas); 
     }
     
     @GetMapping("/consultar")
-    public List<Productos> consultar(){
+    public List<Ofertas> consultar(){
         return repo.findAll();
     }
     
-    @GetMapping("/consultar-producto/{productos}")
-    public Optional<Productos> consultarUsuario(@PathVariable Integer productos){
-        return repo.findById(productos);
+    @GetMapping("/consultar-ofertas/{id}")
+    public Optional<Ofertas> consultarOfertas(@PathVariable Integer id){
+        return repo.findById(id);
     }
     
     @PutMapping("/actualizar")
-    public Productos actualizarUsuario(@RequestBody Productos productos){
-       return repo.save(productos); 
+    public Ofertas actualizarOferta(@RequestBody Ofertas id){
+       return repo.save(id);
+           
     }
 }

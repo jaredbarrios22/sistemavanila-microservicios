@@ -5,8 +5,8 @@
  */
 package com.vanilacompany.sistemavanila.controller;
 
-import com.vanilacompany.sistemavanila.modelo.Productos;
-import com.vanilacompany.sistemavanila.repository.ProductosRepository;
+import com.vanilacompany.sistemavanila.modelo.ProductoSolicitado;
+import com.vanilacompany.sistemavanila.repository.ProductoSolicitadoRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,32 +23,33 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Esteban Castillo
  */
-    //@CrossOrigin(origins ="https://sistema-vanila.azurewebsites.net")
+//@CrossOrigin(origins ="https://sistema-vanila.azurewebsites.net")
     @CrossOrigin(origins ="http://localhost:4200")
     @RestController
-    @RequestMapping(path="/producto")
-    
-public class ProductosController {
+    @RequestMapping(path="/producto-solicitado")
+public class ProductoSolicitadoController {
+        
     @Autowired
-    private ProductosRepository repo;
+    private ProductoSolicitadoRepository repo;
     
     @PostMapping("/agregar")
-    public Productos agregar(@RequestBody Productos productos){
-       return repo.save(productos); 
+    public ProductoSolicitado agregar(@RequestBody ProductoSolicitado productoSolicitado){
+       return repo.save(productoSolicitado); 
     }
     
     @GetMapping("/consultar")
-    public List<Productos> consultar(){
+    public List<ProductoSolicitado> consultar(){
         return repo.findAll();
     }
     
-    @GetMapping("/consultar-producto/{productos}")
-    public Optional<Productos> consultarUsuario(@PathVariable Integer productos){
-        return repo.findById(productos);
+    @GetMapping("/consultar-productos-solicitados/{numerogestion}")
+    public Optional<ProductoSolicitado> consultarProductoSolicitado(@PathVariable Integer numerogestion){
+        return repo.findById(numerogestion);
     }
     
     @PutMapping("/actualizar")
-    public Productos actualizarUsuario(@RequestBody Productos productos){
-       return repo.save(productos); 
+    public ProductoSolicitado actualizarProductoSolicitado(@RequestBody ProductoSolicitado numerogestion){
+       return repo.save(numerogestion);
+           
     }
 }

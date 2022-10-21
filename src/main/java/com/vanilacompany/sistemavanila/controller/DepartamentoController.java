@@ -5,8 +5,8 @@
  */
 package com.vanilacompany.sistemavanila.controller;
 
-import com.vanilacompany.sistemavanila.modelo.Productos;
-import com.vanilacompany.sistemavanila.repository.ProductosRepository;
+import com.vanilacompany.sistemavanila.modelo.Departamento;
+import com.vanilacompany.sistemavanila.repository.DepartamentoRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,32 +23,31 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Esteban Castillo
  */
-    //@CrossOrigin(origins ="https://sistema-vanila.azurewebsites.net")
+//@CrossOrigin(origins ="https://sistema-vanila.azurewebsites.net")
     @CrossOrigin(origins ="http://localhost:4200")
     @RestController
-    @RequestMapping(path="/producto")
-    
-public class ProductosController {
+    @RequestMapping(path="/departamento")
+public class DepartamentoController {
     @Autowired
-    private ProductosRepository repo;
+    private DepartamentoRepository repo;
     
     @PostMapping("/agregar")
-    public Productos agregar(@RequestBody Productos productos){
-       return repo.save(productos); 
+    public Departamento agregar(@RequestBody Departamento departamento){
+       return repo.save(departamento); 
     }
     
     @GetMapping("/consultar")
-    public List<Productos> consultar(){
+    public List<Departamento> consultar(){
         return repo.findAll();
     }
     
-    @GetMapping("/consultar-producto/{productos}")
-    public Optional<Productos> consultarUsuario(@PathVariable Integer productos){
-        return repo.findById(productos);
+    @GetMapping("/consultar-departamento/{id}")
+    public Optional<Departamento> consultarDepartamento(@PathVariable Integer id){
+        return repo.findById(id);
     }
     
     @PutMapping("/actualizar")
-    public Productos actualizarUsuario(@RequestBody Productos productos){
-       return repo.save(productos); 
+    public Departamento actualizarProductoSolicitado(@RequestBody Departamento id){
+       return repo.save(id);
     }
 }
