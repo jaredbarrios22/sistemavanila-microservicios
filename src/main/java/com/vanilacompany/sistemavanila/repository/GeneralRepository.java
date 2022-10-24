@@ -9,6 +9,7 @@ import com.vanilacompany.sistemavanila.modelo.DetalleProductosSolicitud;
 import com.vanilacompany.sistemavanila.modelo.ReporteAdministradores;
 import com.vanilacompany.sistemavanila.modelo.DireccionUsuario;
 import com.vanilacompany.sistemavanila.modelo.Municipio;
+import com.vanilacompany.sistemavanila.modelo.ReporteCompletados;
 import com.vanilacompany.sistemavanila.modelo.ReportePedidosActivos;
 import com.vanilacompany.sistemavanila.modelo.ReportePedidosByUsuario;
 import com.vanilacompany.sistemavanila.modelo.ReporteUsuarios;
@@ -98,10 +99,24 @@ public class GeneralRepository {
         Query q = entityManager.createNativeQuery(query, ReportePedidosActivos.class);
         return q.getResultList();
     }
-    
+
     public List<ReporteUsuarios> obtenerReporteUsuarios() {
         String query = "select su.usuario, su.nombre, su.apellido, su.telefono, su.rol from sv_usuario su";
         Query q = entityManager.createNativeQuery(query, ReporteUsuarios.class);
+        return q.getResultList();
+    }
+
+    public List<ReporteCompletados> obtenerReporteCompletados() {
+        String query = "select ss.numerogestion, ss.usuario, ss.total, \n"
+                + "ss.fecha_solicitud, ss.aplica_oferta,\n"
+                + "sd.nombre descripcion, sm.nombre municipio, sdep.nombre departamento\n"
+                + "from sv_solicitud ss\n"
+                + "inner join sv_estado se on se.id = ss.estado\n"
+                + "inner join sv_direccion sd on sd.id = ss.direccion\n"
+                + "inner join sv_municipio sm on sm.id = sd.municipio\n"
+                + "inner join sv_departamento sdep on sdep.id = sd.departamento\n"
+                + "where ss.estado = 2;";
+        Query q = entityManager.createNativeQuery(query, ReporteCompletados.class);
         return q.getResultList();
     }
 }

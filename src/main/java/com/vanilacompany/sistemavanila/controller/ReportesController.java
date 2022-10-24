@@ -7,6 +7,7 @@ package com.vanilacompany.sistemavanila.controller;
 
 import com.vanilacompany.sistemavanila.modelo.DetalleProductosSolicitud;
 import com.vanilacompany.sistemavanila.modelo.ReporteAdministradores;
+import com.vanilacompany.sistemavanila.modelo.ReporteCompletados;
 import com.vanilacompany.sistemavanila.modelo.ReportePedidosActivos;
 import com.vanilacompany.sistemavanila.modelo.ReportePedidosByUsuario;
 import com.vanilacompany.sistemavanila.modelo.ReporteUsuarios;
@@ -59,6 +60,12 @@ public class ReportesController {
     @GetMapping("/reporte-usuarios")
     public List<ReporteUsuarios> reporteUsuarios(){
         List<ReporteUsuarios> reporte = general.obtenerReporteUsuarios();
+        return reporte;
+    }
+    
+    @GetMapping("/reporte-completados")
+    public List<ReporteCompletados> reporteSolicitudesCompletadas(){
+        List<ReporteCompletados> reporte = general.obtenerReporteCompletados();
         return reporte;
     }
 }
